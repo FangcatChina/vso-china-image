@@ -23,3 +23,12 @@ stages:
       commands:
         - sed -i 's/deb.debian.org/mirrors.cernet.edu.cn/g' /etc/apt/sources.list.d/debian.sources
         - apt-get update
+    
+    - name: host-spawn  # Install host-spawn in advance to prevent possible network issue
+      type: shell
+      commands:
+        - |
+          ARCH=$(uname -m) && \
+          VERSION=$(curl -sL https://api.github.com/repos/1player/host-spawn/releases/latest | grep -oP '"tag_name": "\K[^"]+') && \
+          curl -sL "https://github.com/1player/host-spawn/releases/download/${VERSION}/host-spawn-${ARCH}" -o /tmp/host-spawn && \
+          install -m 0755 /tmp/host-spawn /usr/bin/host-spawn
