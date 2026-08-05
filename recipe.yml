@@ -1,0 +1,25 @@
+name: Vanilla VSO China
+id: vso-china
+vibversion: 1.0.0
+
+stages:
+- id: build
+  base: ghcr.io/vanilla-os/vso:latest
+  addincludes: true
+  singlelayer: false
+  labels:
+    maintainer: FangcatChina
+  args:
+    DEBIAN_FRONTEND: noninteractive
+
+  modules:
+    - name: apt-update
+      type: shell
+      commands:
+        - apt-get update
+
+    - name: mirror
+      type: shell
+      commands:
+        - sed -i 's/deb.debian.org/mirrors.cernet.edu.cn/g' /etc/apt/sources.list.d/debian.sources
+        - apt-get update
