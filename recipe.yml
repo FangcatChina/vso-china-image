@@ -28,7 +28,7 @@ stages:
       type: shell
       commands:
         - |
-          ARCH=$(uname -m)
-          VERSION=$(curl -sL https://api.github.com/repos/1player/host-spawn/releases/latest | grep -oP '"tag_name": "\K[^"]+')
-          curl -sL "https://github.com/1player/host-spawn/releases/download/${VERSION}/host-spawn-${ARCH}" -o /tmp/host-spawn
+          ARCH=$(uname -m) && \
+          VERSION=$(curl -sL https://api.github.com/repos/1player/host-spawn/releases/latest | grep -oP '"tag_name": "\K[^"]+') && \
+          curl -sL "https://github.com/1player/host-spawn/releases/download/${VERSION}/host-spawn-${ARCH}" -o /tmp/host-spawn && \
           install -m 0755 /tmp/host-spawn /usr/bin/host-spawn
