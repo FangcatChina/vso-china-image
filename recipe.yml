@@ -27,4 +27,5 @@ stages:
     - name: distrobox-host-exec  # Install distrobox-host-exec in advance to prevent possible network issue
       type: shell
       commands:
-        - /usr/bin/distrobox-host-exec test -Y
+        - curl -sL https://raw.githubusercontent.com/89luca89/distrobox/legacy/distrobox-host-exec -o /tmp/distrobox-host-exec
+        - sudo install -m 0755 /tmp/distrobox-host-exec /usr/bin/distrobox-host-exec
