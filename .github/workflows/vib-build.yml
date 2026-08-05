@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - 'main'
+    paths-ignore:
+      - '.github/workflows/sync-upstream.yml'
     tags:
       - '*'
   workflow_dispatch:
