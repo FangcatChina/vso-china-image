@@ -23,3 +23,8 @@ stages:
       commands:
         - sed -i 's/deb.debian.org/mirrors.cernet.edu.cn/g' /etc/apt/sources.list.d/debian.sources
         - apt-get update
+    
+    - name: distrobox-host-exec  # Install distrobox-host-exec in advance to prevent possible network issue
+      type: shell
+      commands:
+        - /usr/bin/distrobox-host-exec test -Y
