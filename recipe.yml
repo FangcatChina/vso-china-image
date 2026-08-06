@@ -29,6 +29,6 @@ stages:
       commands:
         - |
           ARCH=$(uname -m) && \
-          VERSION=$(curl -sL https://api.github.com/repos/1player/host-spawn/releases/latest | grep -oP '"tag_name": "\K[^"]+') && \
+          VERSION=$(curl -sL https://github.com/89luca89/distrobox/raw/refs/heads/main/internal/inside-distrobox/assets/distrobox-host-exec | grep -oP 'host_spawn_version="\K[^"]+') && \
           curl -sL "https://github.com/1player/host-spawn/releases/download/${VERSION}/host-spawn-${ARCH}" -o /tmp/host-spawn && \
           install -m 0755 /tmp/host-spawn /usr/bin/host-spawn
